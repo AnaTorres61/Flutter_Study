@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './questao.dart';
 
 main() => runApp(PerguntaApp());
 
@@ -25,31 +26,48 @@ class _PerguntaAppState extends State<PerguntaApp> {
           title: Text('Perguntas'),
           backgroundColor: Color.fromARGB(255, 215, 184, 252),
         ),
-        body: Column(
-          children: [
-            Text(perguntas[_perguntaSelecionada]),
-            ElevatedButton(
-              onPressed: _responder, 
-              child: Text('Resposta 1'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 215, 184, 252),
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('images/background.png'),
+              fit: BoxFit.cover,
               ),
-            ),
-            ElevatedButton(
-              onPressed: _responder, 
-              child: Text('Resposta 2'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 215, 184, 252),
+          ),
+          child: Column(
+            children: [
+              Questao(perguntas[_perguntaSelecionada]),
+              ElevatedButton(
+                onPressed: _responder, 
+                child: Text(
+                  'Resposta 1',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 215, 184, 252),
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: _responder, 
-              child: Text('Resposta 3'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 215, 184, 252),
+              ElevatedButton(
+                onPressed: _responder, 
+                child: Text(
+                  'Resposta 2',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 215, 184, 252),
+                ),
               ),
-            ),
-          ],
+              ElevatedButton(
+                onPressed: _responder, 
+                child: Text(
+                  'Resposta 3',
+                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color.fromARGB(255, 215, 184, 252),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
