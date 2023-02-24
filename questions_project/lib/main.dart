@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './questao.dart';
+import './resposta.dart';
 
 main() => runApp(PerguntaApp());
 
@@ -10,14 +11,23 @@ class _PerguntaAppState extends State<PerguntaApp> {
     setState(() {
       _perguntaSelecionada++;
     });
-    print(_perguntaSelecionada);
   }
 
   @override
   Widget build(BuildContext context) {
-    final perguntas = [
-      'Qual é a sua cor favorita?',
-      'Qual é o seu animal favorito?',
+    final /*List<Map<String,Object>>*/ perguntas = [
+      {
+        'texto':'Qual é a sua cor favorita?',
+        'respostas':['Preto','Vermelho','Verde','Branco']
+      },
+      {
+        'texto':'Qual é o seu animal favorito?',
+        'resposta': ['Coelho','Cobra','Elefante','Leão'],
+      },
+      {
+        'texto':'Qual o seu instrutor favorito?',
+        'resposta': ['Maria','João','Leo','Pedro'],
+      }
     ];
 
     return MaterialApp(
@@ -34,39 +44,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
               ),
           ),
           child: Column(
-            children: [
-              Questao(perguntas[_perguntaSelecionada]),
-              ElevatedButton(
-                onPressed: _responder, 
-                child: Text(
-                  'Resposta 1',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 215, 184, 252),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: _responder, 
-                child: Text(
-                  'Resposta 2',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 215, 184, 252),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: _responder, 
-                child: Text(
-                  'Resposta 3',
-                  style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                  ),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 215, 184, 252),
-                ),
-              ),
-            ],
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
+                Resposta('Resposta 1',_responder),
+                Resposta('Resposta 2',_responder),
+                Resposta('Resposta 3',_responder),
+              ],
           ),
         ),
       ),
