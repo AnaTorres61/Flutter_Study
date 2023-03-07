@@ -23,25 +23,17 @@ class Questionario extends StatelessWidget {
         ? perguntas[perguntaSelecionada].cast()['respostas']
         : [];
 
-    return Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('images/background.png'),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Questao(perguntas[perguntaSelecionada]['texto'].toString()),
-          ...respostas.map((resp) {
-            return Resposta(
-              resp['texto'] as String,
-              () => quandoResponder(int.parse(resp['pontuacao'].toString())),
-            );
-          }).toList(),
-        ],
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Questao(perguntas[perguntaSelecionada]['texto'].toString()),
+        ...respostas.map((resp) {
+          return Resposta(
+            resp['texto'] as String,
+            () => quandoResponder(int.parse(resp['pontuacao'].toString())),
+          );
+        }).toList(),
+      ],
     );
   }
 }

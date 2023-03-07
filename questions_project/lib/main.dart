@@ -10,30 +10,29 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   final /*List<Map<String,Object>>*/ _perguntas = const [
     {
-      'texto': 'Qual é a sua cor favorita?',
+      'texto': 'As fases do processamento são: ',
       'respostas': [
-        {'texto': 'Preto', 'pontuação': 10},
-        {'texto': 'Vermelho', 'pontuação': 5},
-        {'texto': 'Verde', 'pontuação': 3},
-        {'texto': 'Branco', 'pontuação': 1},
+        {'texto': 'Monotarefa, Monousuario e Multitarefa', 'pontuacao': 0},
+        {'texto': 'Entrada, Processamento e Saída', 'pontuacao': 33},
+        {'texto': 'Operação, Linguagem e Aplicação', 'pontuacao': 0},
+        {'texto': 'Programação, Instalação e Registro', 'pontuacao': 0},
       ]
     },
     {
-      'texto': 'Qual é o seu animal favorito?',
+      'texto': 'O que não é uma das 4 fuções principais do computador?',
       'respostas': [
-        {'texto': 'Coelho', 'pontuação': 10},
-        {'texto': 'Cobra', 'pontuação': 5},
-        {'texto': 'Elefante', 'pontuação': 3},
-        {'texto': 'Leão', 'pontuação': 1},
+        {'texto': 'Processamento de Dados', 'pontuacao': 0},
+        {'texto': 'Armazenamento de Dados', 'pontuacao': 0},
+        {'texto': 'Compilação de código', 'pontuacao': 33},
+        {'texto': 'Movimentação de Dados', 'pontuacao': 0},
+        {'texto': 'Controle', 'pontuacao': 0},
       ],
     },
     {
-      'texto': 'Qual o seu instrutor favorito?',
+      'texto': 'Processadores RISC executam instruções com menos rapidez do os processadores CISC?',
       'respostas': [
-        {'texto': 'Maria', 'pontuação': 10},
-        {'texto': 'João', 'pontuação': 5},
-        {'texto': 'Leo', 'pontuação': 3},
-        {'texto': 'Pedro', 'pontuação': 1},
+        {'texto': 'Sim', 'pontuacao': 0},
+        {'texto': 'Não', 'pontuacao': 34},
       ],
     }
   ];
@@ -45,7 +44,13 @@ class _PerguntaAppState extends State<PerguntaApp> {
         _pontuacaoTotal += pontuacao;
       });
     }
-    print(_pontuacaoTotal);
+  }
+
+  void _reiniciarQuestionario() {
+    setState(() {
+      _perguntaSelecionada = 0;
+      _pontuacaoTotal = 0;
+    });
   }
 
   bool get temPerguntaSelecionada {
@@ -54,23 +59,27 @@ class _PerguntaAppState extends State<PerguntaApp> {
 
   @override
   Widget build(BuildContext context) {
-    // for (String textoResp in respostas) {
-    //   widgets.add(Resposta(textoResp, _responder));
-    // }
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Perguntas'),
-          backgroundColor: Color.fromARGB(255, 215, 184, 252),
+          title: Text('ARQUICOMP - QUIZ'),
+          backgroundColor: Color.fromARGB(255, 68, 125, 181),
         ),
-        body: temPerguntaSelecionada
+        body: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/wallpaper.jpg'),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: temPerguntaSelecionada
             ? Questionario(
                 perguntas: _perguntas,
                 perguntaSelecionada: _perguntaSelecionada,
                 quandoResponder: _responder,
               )
-            : Resultado(_pontuacaoTotal),
+            : Resultado(_pontuacaoTotal,_reiniciarQuestionario),
+          ),
       ),
     );
   }
