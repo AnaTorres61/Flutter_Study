@@ -62,11 +62,11 @@ class _PerguntaAppState extends State<PerguntaApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('ARQUICOMP - QUIZ'),
-          backgroundColor: Color.fromARGB(255, 68, 125, 181),
+          title: const Text('ARQUICOMP - QUIZ'),
+          backgroundColor: const Color.fromARGB(255, 68, 125, 181),
         ),
         body: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('images/wallpaper.jpg'),
                 fit: BoxFit.cover,
